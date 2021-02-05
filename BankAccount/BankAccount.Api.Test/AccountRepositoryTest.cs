@@ -90,8 +90,8 @@ namespace BankAccount.Api.Test
             Assert.IsNotNull(_account3);
             Assert.IsTrue(_account3.UserId == user1.Id);
             Assert.IsTrue(_account3.Balance == 999);
-            var successful = _accountRepository.Widthdraw(user1.Id, _account3.Id, 500);
-            Assert.IsTrue(successful);
+            var apiMessage = _accountRepository.Widthdraw(user1.Id, _account3.Id, 500);
+            Assert.IsTrue(apiMessage.Successful);
             _account3 = _accountRepository.FetchById(_account3.Id);
             Assert.IsTrue(_account3.Balance == 499);
         }
@@ -103,10 +103,8 @@ namespace BankAccount.Api.Test
             Assert.IsNotNull(_account4);
             Assert.IsTrue(_account4.UserId == user1.Id);
             Assert.IsTrue(_account4.Balance == 999);
-            Assert.ThrowsException<Exception>(() =>
-            {
-                _accountRepository.Widthdraw(user1.Id, _account4.Id, 900);
-            });
+            var apiMessage = _accountRepository.Widthdraw(user1.Id, _account4.Id, 900);
+            Assert.IsFalse(apiMessage.Successful);
         }
 
         [TestMethod]
@@ -116,8 +114,8 @@ namespace BankAccount.Api.Test
             Assert.IsNotNull(_account5);
             Assert.IsTrue(_account5.UserId == user1.Id);
             Assert.IsTrue(_account5.Balance == 500);
-            var deposited = _accountRepository.Deposit(user1.Id, _account5.Id, 500);
-            Assert.IsTrue(deposited);
+            var apiMessage = _accountRepository.Deposit(user1.Id, _account5.Id, 500);
+            Assert.IsTrue(apiMessage.Successful);
             _account5 = _accountRepository.FetchById(_account5.Id);
             Assert.IsTrue(_account5.Balance == 1000);
         }
@@ -129,11 +127,8 @@ namespace BankAccount.Api.Test
             Assert.IsNotNull(_account6);
             Assert.IsTrue(_account6.UserId == user1.Id);
             Assert.IsTrue(_account6.Balance == 500);
-            Assert.ThrowsException<ArgumentException>(() =>
-            {
-                _accountRepository.Deposit(user1.Id, _account6.Id, 12000);
-            });
-
+            var apiMessage = _accountRepository.Deposit(user1.Id, _account6.Id, 12000);
+            Assert.IsFalse(apiMessage.Successful);
         }
 
         [TestMethod]
