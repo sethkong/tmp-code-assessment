@@ -1,12 +1,12 @@
 import { HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { throwError, Observable } from 'rxjs';
-import { Output, EventEmitter, Directive } from '@angular/core';
+import { Output, EventEmitter, Injectable } from '@angular/core';
 import { IApiResponse } from './api-response';
 import { ErrorMessage } from '../errors/error-message.model';
 
-@Directive()
-export class HttpServiceDirective {
+@Injectable()
+export abstract class HttpService {
   /**
    * The API endpoint.
    */
@@ -59,7 +59,7 @@ export class HttpServiceDirective {
    * @returns The restful resource path.
    */
   protected getEndpoint(resource: string): string {
-    return `https://${this.apiUrl.trim()}/api/${resource.trim()}`;
+    return `${this.apiUrl.trim()}/${resource.trim()}`;
   }
 
   /**
