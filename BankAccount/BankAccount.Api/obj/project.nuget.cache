@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "YUvkpz5uHpuZ54Xd4RsI/68yhlCCiyrSfoMOq3A04/KctJ/2WfgincSUEcVoIDGFc/MKYGUPgyghogzRK7N08Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\sethk\\dev\\labs\\BankAccount\\BankAccount.Api\\BankAccount.Api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sethk\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.9\\microsoft.visualstudio.azure.containers.tools.targets.1.10.9.nupkg.sha512"
+  ],
+  "logs": []
+}
