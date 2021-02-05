@@ -9,7 +9,7 @@ namespace BankAccount.Api.Repositories
         IList<Account> Fetch();
         Account Create(string userId, double balance = 100);
         bool Delete(string accountId);
-        bool Widthdraw(string userId, string accountId, double amount);
-        bool Deposit(string userId, string accountId, double amount);
+        ApiMessage Widthdraw(string userId, string accountId, double amount);
+        ApiMessage Deposit(string userId, string accountId, double amount);
     }
 }

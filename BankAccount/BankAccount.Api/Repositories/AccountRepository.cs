@@ -77,28 +77,44 @@ namespace BankAccount.Api.Repositories
         /// <param name="accountId">The bank account ID.</param>
         /// <param name="amount">The amount to be withdrawn.</param>
         /// <returns>The value which indicates whether the withdrawal was successful or not.</returns>
-        public bool Widthdraw(string userId, string accountId, double amount)
+        public ApiMessage Widthdraw(string userId, string accountId, double amount)
         {
             if (amount < 1.00)
-                throw new ArgumentException("The withdraw amount must be greater than 0. Amount: {0}", amount.ToString());
+                return new ApiMessage
+                {
+                    Successful = false,
+                    Message = string.Format("The withdraw amount must be greater than 0. Amount: {0}", amount)
+                };
 
             if (!DbContext.Accounts.Any(x => x.UserId == userId && x.Id == accountId))
-                throw new ArgumentException("User {0} does not have any account.", userId);
+                return new ApiMessage
+                {
+                    Successful = false,
+                    Message = string.Format("User {0} does not have any account.", userId)
+                };
 
-            var account = DbContext.Accounts.FirstOrDefault(x => x.UserId == userId && x.Id == accountId); 
+            var account = DbContext.Accounts.FirstOrDefault(x => x.UserId == userId && x.Id == accountId);
 
             if (account != null)
             {
                 if ((account.Balance - amount) < 100)
-                    throw new Exception("Minimum balance be at least 100 USD. Withrawal rejected.");
+                    return new ApiMessage
+                    {
+                        Successful = false,
+                        Message = "Minimum balance be at least 100 USD. Withrawal rejected." 
+                    };
 
                 if (amount > (account.Balance * .9))
-                    throw new Exception("Cannot widthraw more than 90% of total balance.");
+                    return new ApiMessage
+                    {
+                        Successful = false,
+                        Message = "Cannot widthraw more than 90% of total balance."
+                    };
 
                 account.Balance -= amount;
             }
 
-            return true;
+            return new ApiMessage { Successful = true, Message = "The amount was widthdrawn successfully." };
         }
 
         /// <summary>
@@ -108,23 +124,39 @@ namespace BankAccount.Api.Repositories
         /// <param name="accountId">The bank account ID.</param>
         /// <param name="amount">The depositing amount.</param>
         /// <returns>The value which indicates whether the transaction was successfuly or not.</returns>
-        public bool Deposit(string userId, string accountId, double amount)
+        public ApiMessage Deposit(string userId, string accountId, double amount)
         {
             if (amount < 1.00)
-                throw new ArgumentException("The deposit amount must be greater than 0. Amount: {0}", amount.ToString());
+                return new ApiMessage
+                {
+                    Successful = false,
+                    Message = string.Format("The deposit amount must be greater than 0. Amount: {0}", amount)
+                };
 
             if (amount > 10000)
-                throw new ArgumentException("Cannot deposit more than 10,000 USD. Transaction rejected.");
+                return new ApiMessage
+                {
+                    Successful = false,
+                    Message = "Cannot deposit more than 10,000 USD. Transaction rejected."
+                };
 
             if (!DbContext.Accounts.Any(x => x.UserId == userId && x.Id == accountId))
-                throw new ArgumentException("User {0} does not have any account.", userId);
+                return new ApiMessage
+                {
+                    Successful = false,
+                    Message = string.Format("User {0} does not have any account.", userId)
+                };
 
             var account = DbContext.Accounts.FirstOrDefault(x => x.UserId == userId && x.Id == accountId);
 
             if (account != null)
                 account.Balance += amount;
 
-            return true;
+            return new ApiMessage
+            {
+                Successful = true,
+                Message = "The amount was deposited successfully."
+            };
         }
 
         /// <summary>

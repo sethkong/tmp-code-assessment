@@ -93,8 +93,8 @@ namespace BankAccount.Api.Controllers
         [HttpPost("deposit")]
         public IActionResult Deposit([FromBody] AccountPayload payload)
         {
-            var successful = _repository.Deposit(payload.UserId, payload.AccountId, payload.Amount);
-            return new JsonResult(new { Successful = successful });
+            var apiMessage = _repository.Deposit(payload.UserId, payload.AccountId, payload.Amount);
+            return new JsonResult(apiMessage);
         }
 
         /// <summary>
@@ -105,8 +105,8 @@ namespace BankAccount.Api.Controllers
         [HttpPost("widthdraw")]
         public IActionResult Widthdraw([FromBody] AccountPayload payload)
         {
-            var successful = _repository.Widthdraw(payload.UserId, payload.AccountId, payload.Amount);
-            return new JsonResult(new { Successful = successful });
+            var apiMessage = _repository.Widthdraw(payload.UserId, payload.AccountId, payload.Amount);
+            return new JsonResult(apiMessage);
         }
     }
 }

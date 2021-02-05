@@ -26,11 +26,11 @@ namespace BankAccount.Api.Domain.Validators
             RuleFor(x => x.Email).EmailAddress().WithMessage(Resource.Validator_User_Email_Format);
 
             // Phone 
-            When(x => !string.IsNullOrWhiteSpace(x.Phone), () =>
-            {
-                RuleFor(x => x.Phone).MinimumLength(9)
-                    .WithMessage(Resource.Validator_User_Phone_Length);
-            });
+            //When(x => !string.IsNullOrWhiteSpace(x.Phone), () =>
+            //{
+            //    RuleFor(x => x.Phone).MinimumLength(9)
+            //        .WithMessage(Resource.Validator_User_Phone_Length);
+            //});
         }
     }
 }
