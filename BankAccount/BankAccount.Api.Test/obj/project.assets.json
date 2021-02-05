@@ -8,6 +8,44 @@
           "build/netstandard1.0/coverlet.collector.targets": {}
         }
       },
+      "FluentValidation/9.5.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/FluentValidation.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/FluentValidation.dll": {}
+        }
+      },
+      "FluentValidation.AspNetCore/9.5.0": {
+        "type": "package",
+        "dependencies": {
+          "FluentValidation": "9.5.0",
+          "FluentValidation.DependencyInjectionExtensions": "9.5.0"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/FluentValidation.AspNetCore.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/FluentValidation.AspNetCore.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "FluentValidation.DependencyInjectionExtensions/9.5.0": {
+        "type": "package",
+        "dependencies": {
+          "FluentValidation": "9.5.0",
+          "Microsoft.Extensions.Dependencyinjection.Abstractions": "2.1.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/FluentValidation.DependencyInjectionExtensions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/FluentValidation.DependencyInjectionExtensions.dll": {}
+        }
+      },
       "Microsoft.CodeCoverage/16.7.1": {
         "type": "package",
         "compile": {
@@ -46,6 +84,15 @@
         },
         "runtime": {
           "lib/netstandard1.3/Microsoft.CSharp.dll": {}
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/2.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
         }
       },
       "Microsoft.NET.Test.Sdk/16.7.1": {
@@ -1645,6 +1692,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "BankAccount.I18n": "1.0.0",
+          "FluentValidation.AspNetCore": "9.5.0",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.10.9"
         },
         "compile": {
@@ -1656,6 +1705,16 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "BankAccount.I18n/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/BankAccount.I18n.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BankAccount.I18n.dll": {}
+        }
       }
     }
   },
@@ -1690,6 +1749,56 @@
         "coverlet-icon.png",
         "coverlet.collector.1.3.0.nupkg.sha512",
         "coverlet.collector.nuspec"
+      ]
+    },
+    "FluentValidation/9.5.0": {
+      "sha512": "gsu4SrlTgTCS57nynfUXmuEqOqQdsgZGd69dO4dJg/TRDvNTXKlw5TPKVoY/ieQLsmFBzd9ax/Y1Tx+8Ds3XKw==",
+      "type": "package",
+      "path": "fluentvalidation/9.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "fluent-validation-icon.png",
+        "fluentvalidation.9.5.0.nupkg.sha512",
+        "fluentvalidation.nuspec",
+        "lib/net461/FluentValidation.dll",
+        "lib/net461/FluentValidation.xml",
+        "lib/net5.0/FluentValidation.dll",
+        "lib/net5.0/FluentValidation.xml",
+        "lib/netstandard2.0/FluentValidation.dll",
+        "lib/netstandard2.0/FluentValidation.xml"
+      ]
+    },
+    "FluentValidation.AspNetCore/9.5.0": {
+      "sha512": "cQswiuS0iJEe2eQEEGXMBbq6y7uD3Rxi6ZfcLiyfaFT6TXwQOWtUU2Rf2JaJf9ZtyIudlxf7WvQwKBdBTu6lCw==",
+      "type": "package",
+      "path": "fluentvalidation.aspnetcore/9.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "fluent-validation-icon.png",
+        "fluentvalidation.aspnetcore.9.5.0.nupkg.sha512",
+        "fluentvalidation.aspnetcore.nuspec",
+        "lib/net5.0/FluentValidation.AspNetCore.dll",
+        "lib/net5.0/FluentValidation.AspNetCore.xml",
+        "lib/netcoreapp2.1/FluentValidation.AspNetCore.dll",
+        "lib/netcoreapp2.1/FluentValidation.AspNetCore.xml",
+        "lib/netcoreapp3.1/FluentValidation.AspNetCore.dll",
+        "lib/netcoreapp3.1/FluentValidation.AspNetCore.xml"
+      ]
+    },
+    "FluentValidation.DependencyInjectionExtensions/9.5.0": {
+      "sha512": "UNlnBtAtDvk0phjOHNWy5kPyhcf6qSSzNq1dfPIaAZI9pp6pFMap8tHpl/xr3nqRb26Mcg4Jgt0eWOQdY8hyIQ==",
+      "type": "package",
+      "path": "fluentvalidation.dependencyinjectionextensions/9.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "fluent-validation-icon.png",
+        "fluentvalidation.dependencyinjectionextensions.9.5.0.nupkg.sha512",
+        "fluentvalidation.dependencyinjectionextensions.nuspec",
+        "lib/netstandard2.0/FluentValidation.DependencyInjectionExtensions.dll",
+        "lib/netstandard2.0/FluentValidation.DependencyInjectionExtensions.xml"
       ]
     },
     "Microsoft.CodeCoverage/16.7.1": {
@@ -1785,6 +1894,19 @@
         "ref/xamarinmac20/_._",
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._"
+      ]
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/2.1.0": {
+      "sha512": "8/CtASu80UIoyG+r8FstrmZW5GLtXxzoYpjj3jV0FKZCL5CiFgSH3pAmqut/dC68mu7N1bU6v0UtKKL3gCUQGQ==",
+      "type": "package",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/2.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.abstractions.nuspec"
       ]
     },
     "Microsoft.NET.Test.Sdk/16.7.1": {
@@ -5797,6 +5919,11 @@
       "type": "project",
       "path": "../BankAccount.Api/BankAccount.Api.csproj",
       "msbuildProject": "../BankAccount.Api/BankAccount.Api.csproj"
+    },
+    "BankAccount.I18n/1.0.0": {
+      "type": "project",
+      "path": "../BankAccount.I18n/BankAccount.I18n.csproj",
+      "msbuildProject": "../BankAccount.I18n/BankAccount.I18n.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -5814,11 +5941,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sethk\\dev\\labs\\BankAccount\\BankAccount.Api.Test\\BankAccount.Api.Test.csproj",
+      "projectUniqueName": "C:\\Users\\sethk\\dev\\labs\\tmp-code-assessment\\BankAccount\\BankAccount.Api.Test\\BankAccount.Api.Test.csproj",
       "projectName": "BankAccount.Api.Test",
-      "projectPath": "C:\\Users\\sethk\\dev\\labs\\BankAccount\\BankAccount.Api.Test\\BankAccount.Api.Test.csproj",
+      "projectPath": "C:\\Users\\sethk\\dev\\labs\\tmp-code-assessment\\BankAccount\\BankAccount.Api.Test\\BankAccount.Api.Test.csproj",
       "packagesPath": "C:\\Users\\sethk\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sethk\\dev\\labs\\BankAccount\\BankAccount.Api.Test\\obj\\",
+      "outputPath": "C:\\Users\\sethk\\dev\\labs\\tmp-code-assessment\\BankAccount\\BankAccount.Api.Test\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\sethk\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5835,8 +5962,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\sethk\\dev\\labs\\BankAccount\\BankAccount.Api\\BankAccount.Api.csproj": {
-              "projectPath": "C:\\Users\\sethk\\dev\\labs\\BankAccount\\BankAccount.Api\\BankAccount.Api.csproj"
+            "C:\\Users\\sethk\\dev\\labs\\tmp-code-assessment\\BankAccount\\BankAccount.Api\\BankAccount.Api.csproj": {
+              "projectPath": "C:\\Users\\sethk\\dev\\labs\\tmp-code-assessment\\BankAccount\\BankAccount.Api\\BankAccount.Api.csproj"
             }
           }
         }

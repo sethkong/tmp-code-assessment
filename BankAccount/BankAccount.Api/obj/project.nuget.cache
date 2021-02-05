@@ -1,9 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "YUvkpz5uHpuZ54Xd4RsI/68yhlCCiyrSfoMOq3A04/KctJ/2WfgincSUEcVoIDGFc/MKYGUPgyghogzRK7N08Q==",
+  "dgSpecHash": "APfIFxlHPrSgjpqx0LSVwC61s57WgRktku0mjBaXeB74XcDV2CViZ4IfPEBdAOB5l33m9kLPsAvDJKuQsXj9hQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sethk\\dev\\labs\\BankAccount\\BankAccount.Api\\BankAccount.Api.csproj",
+  "projectFilePath": "C:\\Users\\sethk\\dev\\labs\\tmp-code-assessment\\BankAccount\\BankAccount.Api\\BankAccount.Api.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\sethk\\.nuget\\packages\\fluentvalidation\\9.5.0\\fluentvalidation.9.5.0.nupkg.sha512",
+    "C:\\Users\\sethk\\.nuget\\packages\\fluentvalidation.aspnetcore\\9.5.0\\fluentvalidation.aspnetcore.9.5.0.nupkg.sha512",
+    "C:\\Users\\sethk\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\9.5.0\\fluentvalidation.dependencyinjectionextensions.9.5.0.nupkg.sha512",
+    "C:\\Users\\sethk\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.1.0\\microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512",
     "C:\\Users\\sethk\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.9\\microsoft.visualstudio.azure.containers.tools.targets.1.10.9.nupkg.sha512"
   ],
   "logs": []

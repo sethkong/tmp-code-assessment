@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sethk\\dev\\labs\\BankAccount\\BankAccount.Api.Test\\BankAccount.Api.Test.csproj": {}
+    "C:\\Users\\sethk\\dev\\labs\\tmp-code-assessment\\BankAccount\\BankAccount.Api.Test\\BankAccount.Api.Test.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sethk\\dev\\labs\\BankAccount\\BankAccount.Api.Test\\BankAccount.Api.Test.csproj": {
+    "C:\\Users\\sethk\\dev\\labs\\tmp-code-assessment\\BankAccount\\BankAccount.Api.Test\\BankAccount.Api.Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sethk\\dev\\labs\\BankAccount\\BankAccount.Api.Test\\BankAccount.Api.Test.csproj",
+        "projectUniqueName": "C:\\Users\\sethk\\dev\\labs\\tmp-code-assessment\\BankAccount\\BankAccount.Api.Test\\BankAccount.Api.Test.csproj",
         "projectName": "BankAccount.Api.Test",
-        "projectPath": "C:\\Users\\sethk\\dev\\labs\\BankAccount\\BankAccount.Api.Test\\BankAccount.Api.Test.csproj",
+        "projectPath": "C:\\Users\\sethk\\dev\\labs\\tmp-code-assessment\\BankAccount\\BankAccount.Api.Test\\BankAccount.Api.Test.csproj",
         "packagesPath": "C:\\Users\\sethk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sethk\\dev\\labs\\BankAccount\\BankAccount.Api.Test\\obj\\",
+        "outputPath": "C:\\Users\\sethk\\dev\\labs\\tmp-code-assessment\\BankAccount\\BankAccount.Api.Test\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\sethk\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\sethk\\dev\\labs\\BankAccount\\BankAccount.Api\\BankAccount.Api.csproj": {
-                "projectPath": "C:\\Users\\sethk\\dev\\labs\\BankAccount\\BankAccount.Api\\BankAccount.Api.csproj"
+              "C:\\Users\\sethk\\dev\\labs\\tmp-code-assessment\\BankAccount\\BankAccount.Api\\BankAccount.Api.csproj": {
+                "projectPath": "C:\\Users\\sethk\\dev\\labs\\tmp-code-assessment\\BankAccount\\BankAccount.Api\\BankAccount.Api.csproj"
               }
             }
           }
@@ -83,14 +83,85 @@
         }
       }
     },
-    "C:\\Users\\sethk\\dev\\labs\\BankAccount\\BankAccount.Api\\BankAccount.Api.csproj": {
+    "C:\\Users\\sethk\\dev\\labs\\tmp-code-assessment\\BankAccount\\BankAccount.Api\\BankAccount.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sethk\\dev\\labs\\BankAccount\\BankAccount.Api\\BankAccount.Api.csproj",
+        "projectUniqueName": "C:\\Users\\sethk\\dev\\labs\\tmp-code-assessment\\BankAccount\\BankAccount.Api\\BankAccount.Api.csproj",
         "projectName": "BankAccount.Api",
-        "projectPath": "C:\\Users\\sethk\\dev\\labs\\BankAccount\\BankAccount.Api\\BankAccount.Api.csproj",
+        "projectPath": "C:\\Users\\sethk\\dev\\labs\\tmp-code-assessment\\BankAccount\\BankAccount.Api\\BankAccount.Api.csproj",
         "packagesPath": "C:\\Users\\sethk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sethk\\dev\\labs\\BankAccount\\BankAccount.Api\\obj\\",
+        "outputPath": "C:\\Users\\sethk\\dev\\labs\\tmp-code-assessment\\BankAccount\\BankAccount.Api\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\sethk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\sethk\\dev\\labs\\tmp-code-assessment\\BankAccount\\BankAccount.I18n\\BankAccount.I18n.csproj": {
+                "projectPath": "C:\\Users\\sethk\\dev\\labs\\tmp-code-assessment\\BankAccount\\BankAccount.I18n\\BankAccount.I18n.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[9.5.0, )"
+            },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.10.9, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\sethk\\dev\\labs\\tmp-code-assessment\\BankAccount\\BankAccount.I18n\\BankAccount.I18n.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\sethk\\dev\\labs\\tmp-code-assessment\\BankAccount\\BankAccount.I18n\\BankAccount.I18n.csproj",
+        "projectName": "BankAccount.I18n",
+        "projectPath": "C:\\Users\\sethk\\dev\\labs\\tmp-code-assessment\\BankAccount\\BankAccount.I18n\\BankAccount.I18n.csproj",
+        "packagesPath": "C:\\Users\\sethk\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sethk\\dev\\labs\\tmp-code-assessment\\BankAccount\\BankAccount.I18n\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\sethk\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -118,12 +189,6 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "dependencies": {
-            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
-              "target": "Package",
-              "version": "[1.10.9, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
@@ -135,9 +200,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

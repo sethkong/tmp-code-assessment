@@ -1,12 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "PWDgR6BbO2AFmkd3tfB0LgBdaAZAZuSkk59CiIsI9OKiUdkPeyumKalCAE+jVTTSkA2yRricdIEPRQiwq3d28A==",
+  "dgSpecHash": "KmV6hbDPu8K+GUfziLsrzEqaT8RYBRzD9fcJ74HVVLVyhlFsak9rUa5yq7c9kyQMgLjGrINu6GtmnyWAkw1yeA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sethk\\dev\\labs\\BankAccount\\BankAccount.Api.Test\\BankAccount.Api.Test.csproj",
+  "projectFilePath": "C:\\Users\\sethk\\dev\\labs\\tmp-code-assessment\\BankAccount\\BankAccount.Api.Test\\BankAccount.Api.Test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sethk\\.nuget\\packages\\coverlet.collector\\1.3.0\\coverlet.collector.1.3.0.nupkg.sha512",
+    "C:\\Users\\sethk\\.nuget\\packages\\fluentvalidation\\9.5.0\\fluentvalidation.9.5.0.nupkg.sha512",
+    "C:\\Users\\sethk\\.nuget\\packages\\fluentvalidation.aspnetcore\\9.5.0\\fluentvalidation.aspnetcore.9.5.0.nupkg.sha512",
+    "C:\\Users\\sethk\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\9.5.0\\fluentvalidation.dependencyinjectionextensions.9.5.0.nupkg.sha512",
     "C:\\Users\\sethk\\.nuget\\packages\\microsoft.codecoverage\\16.7.1\\microsoft.codecoverage.16.7.1.nupkg.sha512",
     "C:\\Users\\sethk\\.nuget\\packages\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",
+    "C:\\Users\\sethk\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.1.0\\microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512",
     "C:\\Users\\sethk\\.nuget\\packages\\microsoft.net.test.sdk\\16.7.1\\microsoft.net.test.sdk.16.7.1.nupkg.sha512",
     "C:\\Users\\sethk\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\sethk\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
