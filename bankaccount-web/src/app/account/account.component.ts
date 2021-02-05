@@ -5,7 +5,7 @@ import { FormComponent } from '../commons/forms/form-component';
 import { FormField } from '../commons/forms/form-field.model';
 import { ReactiveFormValidationService } from '../commons/forms/reactive-form-validation.service';
 import { ReactiveFormService } from '../commons/forms/reactive-form.service';
-import { Account, AccountRequest, ApiMessage } from '../bank-account.model';
+import { Account, AccountAction, AccountRequest, ApiMessage } from '../bank-account.model';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -26,9 +26,14 @@ export class AccountComponent extends FormComponent implements OnInit {
   accounts: Account[] = [];
 
   /**
-   * The value which indicates whether a user is adding an account.
+   * The value which indicates whether the form can be shown.
    */
-  isAddingAccount = false;
+  showingForm = false;
+
+  /**
+   * The current account action.
+   */
+  currentAction: AccountAction = AccountAction.AddAccount;
 
   /**
    * Initializes a new instance of the {AccountComponent}.
@@ -61,14 +66,17 @@ export class AccountComponent extends FormComponent implements OnInit {
    * Shows the adding an account form.
    */
   onAddAccountClick() {
-    this.setIsAddingAccount(true);
+    this.resetForm();
+    this.setShowForm(true);
+    this.currentAction = AccountAction.AddAccount;
+    this.formValidationService.clearControlValidators(this.accountForm, 'accountId');
   }
 
   /**
    * Cancles adding a account operation.
    */
   onCancelClick() {
-    this.setIsAddingAccount(false);
+    this.setShowForm(false);
   }
 
   /**
@@ -76,10 +84,23 @@ export class AccountComponent extends FormComponent implements OnInit {
    * @returns
    */
   onSaveClick() {
+
     if (!this.formValidationService.validateForm(this.accountForm)) {
       return;
     }
-    this.processAccountRequest();
+
+    switch (this.currentAction) {
+      case AccountAction.AddAccount:
+        this.createAccount();
+        break;
+      case AccountAction.Deposit:
+        this.deposit();
+        break;
+      case AccountAction.Widthdraw:
+        this.withdraw();
+        break;
+    }
+
     this.resetForm();
   }
 
@@ -89,6 +110,68 @@ export class AccountComponent extends FormComponent implements OnInit {
    */
   onDeleteAccountClick(accountId: string) {
     this.deleteAccount(accountId);
+  }
+
+  /**
+   * Deposits money into the given account.
+   * @param accountId The bank account ID.
+   */
+  onDepositClick(accountId: string) {
+    this.currentAction = AccountAction.Deposit;
+    this.formValidationService.setControlValidators(this.accountForm, 'accountId', [Validators.required]);
+    const account = this.accounts.find(x => x.id === accountId);
+    if (account && account.userId)
+      this.formService.setControlValue(this.accountForm, 'userId', account.userId);
+    this.formService.setControlValue(this.accountForm, 'accountId', accountId);
+    this.setShowForm(true);
+  }
+
+  /**
+   * Widthdraws money from a bank account.
+   * @param accountId The bank account ID.
+   */
+  onWidthdrawClick(accountId: string) {
+    this.currentAction = AccountAction.Widthdraw;
+    this.formValidationService.setControlValidators(this.accountForm, 'accountId', [Validators.required]);
+    this.formService.setControlValue(this.accountForm, 'accountId', accountId);
+    const account = this.accounts.find(x => x.id === accountId);
+    if (account && account.userId)
+      this.formService.setControlValue(this.accountForm, 'userId', account.userId);
+    this.setShowForm(true);
+  }
+
+  /**
+   * Creates the account and fetches the response payload.
+   */
+  private withdraw(): void {
+    this.accountService.withdraw(this.prepareAccountRequest())
+      .subscribe(response => {
+        var message = this.accountService.handleResponse<ApiMessage>(response);
+        if (message && message.successful) {
+          this.fetchAllAccounts();
+          this.toastr.success(message.message);
+        } else if (message && message.successful === false) {
+          this.toastr.error(message.message);
+        }
+      },
+        error => this.accountService.handleResponeError(error));
+  }
+
+  /**
+   * Creates the account and fetches the response payload.
+   */
+  private deposit(): void {
+    this.accountService.deposit(this.prepareAccountRequest())
+      .subscribe(response => {
+        var message = this.accountService.handleResponse<ApiMessage>(response);
+        if (message && message.successful === false) {
+          this.toastr.error(message.message);
+        } else if (message && message.successful) {
+          this.fetchAllAccounts();
+          this.toastr.success(message.message);
+        }
+      },
+        error => this.accountService.handleResponeError(error));
   }
 
   /**
@@ -108,9 +191,9 @@ export class AccountComponent extends FormComponent implements OnInit {
   }
 
   /**
-   * Processes the account request and fetches the response payload.
+   * Creates the account and fetches the response payload.
    */
-  private processAccountRequest(): void {
+  private createAccount(): void {
     this.accountService.createAccount(this.prepareAccountRequest())
       .subscribe(response => {
         this.accountService.handleResponse<Account>(response);
@@ -137,15 +220,17 @@ export class AccountComponent extends FormComponent implements OnInit {
     const request = new AccountRequest();
     request.userId = this.formService.getControlValue(this.accountForm, 'userId');
     request.amount = parseFloat(this.formService.getControlValue(this.accountForm, 'amount'));
+    if (this.currentAction === AccountAction.Deposit || this.currentAction === AccountAction.Widthdraw)
+      request.accountId = this.formService.getControlValue(this.accountForm, 'accountId');
     return request;
   }
 
   /**
-   * Sets the value indicates whether adding an account is needed.
+   * Sets the value indicates whether the form can be shown.
    * @param value The adding account value.
    */
-  private setIsAddingAccount(value: boolean) {
-    this.isAddingAccount = value;
+  private setShowForm(value: boolean) {
+    this.showingForm = value;
   }
 
   /**
@@ -162,6 +247,7 @@ export class AccountComponent extends FormComponent implements OnInit {
     const formFields: FormField[] = [
       new FormField(null, 'userId', [Validators.maxLength(36), Validators.required]),
       new FormField(null, 'amount', [Validators.required, Validators.min(1)]),
+      new FormField(null, 'accountId', [])
     ];
     this.accountForm = this.formService.createForm(this.accountForm, formFields);
   }

@@ -47,4 +47,11 @@ export class UserRequest {
 
 export interface ApiMessage {
     successful: boolean;
+    message: string;
+}
+
+export enum AccountAction {
+    AddAccount, 
+    Widthdraw, 
+    Deposit
 }

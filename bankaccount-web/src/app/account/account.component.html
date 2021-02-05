@@ -1,10 +1,9 @@
 <div class="row">
-    <a href="javascript:void(0)" (click)="onAddAccountClick()" class="float-right">
+    <a href="javascript:void(0)" (click)="onAddAccountClick()">
         <i class="fa fa-plus"></i> Add Account
     </a>
 </div>
-
-<form *ngIf="isAddingAccount" [formGroup]="accountForm">
+<form *ngIf="showingForm" [formGroup]="accountForm">
 
     <div class="row form-group col-md-6 col-xs-12">
         <input id="userId" [ngClass]="displayFormFieldError('userId')" formControlName="userId"
@@ -45,8 +44,15 @@
         <td>{{ account.userId }}</td>
         <td>{{ account.balance }}</td>
         <td><a href="javascript:void(0)" (click)="onDeleteAccountClick(account.id)">
-            <i class="fa fa-trash"></i>Delete Account
-        </a></td>
+            <i class="fa fa-trash" title="Delete Account"></i>Delete Account
+        </a>
+        <a href="javascript:void(0)" (click)="onDepositClick(account.id)">
+            <i class="fa fa-money" title="Deposit"></i> Deposit
+        </a>
+        <a href="javascript:void(0)" (click)="onWidthdrawClick(account.id)">
+            <i class="fa fa-check-circle" title="Widthraw"></i> Withdraw
+        </a>
+    </td>
       </tr>
     </tbody>
   </table>
