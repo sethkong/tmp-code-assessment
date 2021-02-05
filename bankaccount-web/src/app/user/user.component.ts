@@ -142,11 +142,11 @@ export class UserComponent extends FormComponent implements OnInit {
   */
   private prepareUserRequest(): UserRequest {
     const request = new UserRequest();
-    request.firstName = this.formService.getControlValue('firstName');
-    request.lastName = this.formService.getControlValue('lastName');
-    request.email = this.formService.getControlValue('email');
-    request.phone = this.formService.getControlValue('phone');
-    request.password = this.formService.getControlValue('password');
+    request.firstName = this.formService.getControlValue(this.userForm, 'firstName');
+    request.lastName = this.formService.getControlValue(this.userForm, 'lastName');
+    request.email = this.formService.getControlValue(this.userForm, 'email');
+    request.phone = this.formService.getControlValue(this.userForm, 'phone');
+    request.password = this.formService.getControlValue(this.userForm, 'password');
     request.username = request.email || request.phone;
     return request;
   }
@@ -170,6 +170,6 @@ export class UserComponent extends FormComponent implements OnInit {
       new FormField(null, 'phone', [Validators.maxLength(20)]),
       new FormField(null, 'password', [Validators.maxLength(20), Validators.required]),
     ];
-    this.userForm = this.formService.createForm(this.formBuilder, this.userForm, formFields);
+    this.userForm = this.formService.createForm(this.userForm, formFields);
   }
 }

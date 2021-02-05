@@ -1,1 +1,52 @@
-<p>account works!</p>
+<div class="row">
+    <a href="javascript:void(0)" (click)="onAddAccountClick()" class="float-right">
+        <i class="fa fa-plus"></i> Add Account
+    </a>
+</div>
+
+<form *ngIf="isAddingAccount" [formGroup]="accountForm">
+
+    <div class="row form-group col-md-6 col-xs-12">
+        <input id="userId" [ngClass]="displayFormFieldError('userId')" formControlName="userId"
+            class="form-control" placeholder="User ID">
+        <kh-field-error [hasError]="hasFormFieldError('userId')" message="User ID is required.">
+        </kh-field-error>
+    </div>
+
+    <div class="row form-group col-md-6 col-xs-12">
+        <input id="amount" [ngClass]="displayFormFieldError('amount')" formControlName="amount"
+            class="form-control" placeholder="Amount">
+        <kh-field-error [hasError]="hasFormFieldError('amount')" message="Amount is required.">
+        </kh-field-error>
+    </div>
+
+    <div class="row btn-panel">
+        <button class="btn btn-light btn-info col-xs-12" (click)="onCancelClick()">Cancel</button>
+        <button class="btn btn-primary btn-info col-xs-12" (click)="onSaveClick()">Save</button>
+    </div>
+</form>
+
+<table *ngIf="accounts.length > 0" class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Routing Number</th>
+        <th scope="col">Account Number</th>
+        <th scope="col">User ID</th>
+        <th scope="col">Balance</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let account of accounts">
+        <th scope="row">{{ account.id }}</th>
+        <td>{{ account.routingNumber }}</td>
+        <td>{{ account.accountNumber }}</td>
+        <td>{{ account.userId }}</td>
+        <td>{{ account.balance }}</td>
+        <td><a href="javascript:void(0)" (click)="onDeleteAccountClick(account.id)">
+            <i class="fa fa-trash"></i>Delete Account
+        </a></td>
+      </tr>
+    </tbody>
+  </table>
