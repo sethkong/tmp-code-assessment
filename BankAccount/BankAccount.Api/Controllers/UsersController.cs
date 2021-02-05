@@ -48,7 +48,7 @@ namespace BankAccount.Api.Controllers
         /// </summary>
         /// <param name="userId">The user ID.</param>
         /// <returns>The user.</returns>
-        [HttpGet("{id}")]
+        [HttpGet("{userId}")]
         public IActionResult FetchById(string userId)
         {
             var user = _repository.FetchById(userId);
@@ -72,7 +72,7 @@ namespace BankAccount.Api.Controllers
         /// </summary>
         /// <param name="userId">The user ID.</param>
         /// <returns>The flag indicates whether the delete opeation was successful or not.</returns>
-        [HttpDelete("{id}")]
+        [HttpDelete("{userId}")]
         public IActionResult Delete(string userId)
         {
             var deleted = _repository.Delete(userId);

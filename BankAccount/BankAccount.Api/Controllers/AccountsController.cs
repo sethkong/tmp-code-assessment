@@ -1,4 +1,5 @@
-﻿using BankAccount.Api.Repositories;
+﻿using BankAccount.Api.Domain;
+using BankAccount.Api.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -50,7 +51,7 @@ namespace BankAccount.Api.Controllers
         /// </summary>
         /// <param name="accountId">The bank account ID.</param>
         /// <returns>The bank account.</returns>
-        [HttpGet("{id}")]
+        [HttpGet("{accountId}")]
         public IActionResult FetchById(string accountId)
         {
             var account = _repository.FetchById(accountId);
@@ -64,9 +65,9 @@ namespace BankAccount.Api.Controllers
         /// <param name="amount">The initial deposit amount.</param>
         /// <returns>The newly created bank account.</returns>
         [HttpPost]
-        public IActionResult Create(string userId, double amount)
+        public IActionResult Create([FromBody] AccountPayload payload)
         {
-            var account = _repository.Create(userId, amount);
+            var account = _repository.Create(payload.UserId, payload.Amount);
             return new JsonResult(account);
         }
 
@@ -75,7 +76,7 @@ namespace BankAccount.Api.Controllers
         /// </summary>
         /// <param name="accountId">The bank account ID.</param>
         /// <returns>The flag indicates whether the delete operation was successful or not.</returns>
-        [HttpDelete("{id}")]
+        [HttpDelete("{accountId}")]
         public IActionResult Delete(string accountId)
         {
             var deleted = _repository.Delete(accountId);
@@ -85,28 +86,24 @@ namespace BankAccount.Api.Controllers
         /// <summary>
         /// Deposits money into bank account.
         /// </summary>
-        /// <param name="userId">The user ID.</param>
-        /// <param name="accountId">The bank account ID.</param>
-        /// <param name="amount">The depositing amount.</param>
+        /// <param name="payload">The instance of the <see cref="AccountPayload"/>.
         /// <returns>The flag indicates whether deposit operation was successful.</returns>
         [HttpPost("deposit")]
-        public IActionResult Deposit(string userId, string accountId, double amount)
+        public IActionResult Deposit([FromBody] AccountPayload payload)
         {
-            var successful = _repository.Deposit(userId, accountId, amount);
+            var successful = _repository.Deposit(payload.UserId, payload.AccountId, payload.Amount);
             return new JsonResult(new { Successful = successful });
         }
 
         /// <summary>
         /// Widthdraws a specified amount of money from a bank account.
         /// </summary>
-        /// <param name="userId">The user ID.</param>
-        /// <param name="accountId">The bank account ID.</param>
-        /// <param name="amount">The widthrawing amount.</param>
+        /// <param name="payload">The instance of the <see cref="AccountPayload"/>.</param>
         /// <returns>The flag indicates whether the widthdawing operation was successful.</returns>
         [HttpPost("widthdraw")]
-        public IActionResult Widthdraw(string userId, string accountId, double amount)
+        public IActionResult Widthdraw([FromBody] AccountPayload payload)
         {
-            var successful = _repository.Widthdraw(userId, accountId, amount);
+            var successful = _repository.Widthdraw(payload.UserId, payload.AccountId, payload.Amount);
             return new JsonResult(new { Successful = successful });
         }
     }
