@@ -66,7 +66,7 @@ export class BankAccountService extends HttpService {
    */
   createAccount(request: AccountRequest): Observable<IApiResponse<Account>> {
     return this.http.post<IApiResponse<Account>>(this.accountEndpoint,
-      request, { headers: this.getCommonHttpHeaders() })
+      request, { headers: this.getNoTokenCommonHttpHeaders() })
       .pipe(catchError(this.handleError));
   }
 
@@ -78,7 +78,7 @@ export class BankAccountService extends HttpService {
   deleteAccount(accountId: string): Observable<IApiResponse<ApiMessage>> {
     const accountEndpointById = `${this.accountEndpoint}/${accountId}`;
     return this.http.delete<IApiResponse<ApiMessage>>(accountEndpointById,
-      { headers: this.getCommonHttpHeaders() })
+      { headers: this.getNoTokenCommonHttpHeaders() })
       .pipe(catchError(this.handleError));
   }
 

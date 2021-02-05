@@ -1,11 +1,13 @@
 ﻿using BankAccount.Api.Domain;
 using BankAccount.Api.Repositories;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace BankAccount.Api.Controllers
 {
     [ApiController]
+    [EnableCors("CorsPolicy")]
     [Route("[controller]")]
     public class UsersController : ControllerBase
     {

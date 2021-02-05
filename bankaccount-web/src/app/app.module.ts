@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
 import { CommonsModule } from './commons/commons.module';
 import { UserComponent } from './user/user.component';
 import { AccountComponent } from './account/account.component';
+import { ErrorsModule } from './commons/errors/errors.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -16,7 +20,11 @@ import { AccountComponent } from './account/account.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ErrorsModule,
     CommonsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

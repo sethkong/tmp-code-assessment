@@ -52,9 +52,9 @@ export class UserService extends HttpService {
    * @param request The user request information.
    * @returns The newly created user.
    */
-  createAccount(request: UserRequest): Observable<IApiResponse<Account>> {
-    return this.http.post<IApiResponse<Account>>(this.userEndpoint,
-      request, { headers: this.getCommonHttpHeaders() })
+  createUser(request: UserRequest): Observable<IApiResponse<User>> {
+    return this.http.post<IApiResponse<User>>(this.userEndpoint,
+      request, { headers: this.getNoTokenCommonHttpHeaders() })
       .pipe(catchError(this.handleError));
   }
 
@@ -63,10 +63,10 @@ export class UserService extends HttpService {
    * @param userId The user ID.
    * @returns The instance of the {ApiMessage}.
    */
-  deleteAccount(userId: string): Observable<IApiResponse<ApiMessage>> {
+  deleteUser(userId: string): Observable<IApiResponse<ApiMessage>> {
     const userEndpointById = `${this.userEndpoint}/${userId}`;
     return this.http.delete<IApiResponse<ApiMessage>>(userEndpointById,
-      { headers: this.getCommonHttpHeaders() })
+      { headers: this.getNoTokenCommonHttpHeaders() })
       .pipe(catchError(this.handleError));
   }
 }

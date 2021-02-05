@@ -1,1 +1,74 @@
-<p>user works!</p>
+<div class="row">
+    <a href="javascript:void(0)" (click)="onAddUserClick()" class="float-right">
+        <i class="fa fa-plus"></i> Add User
+    </a>
+</div>
+<form *ngIf="isAddingUser" [formGroup]="userForm">
+
+    <div class="row form-group col-md-6 col-xs-12">
+        <input id="firstName" [ngClass]="displayFormFieldError('firstName')" formControlName="firstName"
+            class="form-control" placeholder="First name">
+        <kh-field-error [hasError]="hasFormFieldError('firstName')" message="First name is required.">
+        </kh-field-error>
+    </div>
+
+    <div class="row form-group col-md-6 col-xs-12">
+        <input id="lastName" [ngClass]="displayFormFieldError('lastName')" formControlName="lastName"
+            class="form-control" placeholder="Last name">
+        <kh-field-error [hasError]="hasFormFieldError('lastName')" message="Last name is required.">
+        </kh-field-error>
+    </div>
+
+    <div class="row form-group col-md-6 col-xs-12">
+        <input id="email" type="email" [ngClass]="displayFormFieldError('email')" formControlName="email"
+            class="form-control" placeholder="Email">
+        <kh-field-error [hasError]="hasFormFieldError('email')" message="Email is required.">
+        </kh-field-error>
+        <kh-field-error [hasError]="hasFormFieldEmailError('email')" message="Email is invalid.">
+        </kh-field-error>
+    </div>
+
+    <div class="row form-group col-md-6 col-xs-12">
+        <input id="phone" [ngClass]="displayFormFieldError('phone')" formControlName="phone" class="form-control"
+            placeholder="Phone">
+        <kh-field-error [hasError]="hasFormFieldError('phone')" message="Phone is required.">
+        </kh-field-error>
+    </div>
+
+    <div class="row form-group col-md-6 col-xs-12">
+        <input id="password" [ngClass]="displayFormFieldError('password')" type="password" formControlName="password"
+            class="form-control" placeholder="Password">
+        <kh-field-error [hasError]="hasFormFieldError('password')" message="Password is required.">
+        </kh-field-error>
+    </div>
+
+    <div class="row btn-panel">
+        <button class="btn btn-light btn-info col-xs-12" (click)="onCancelClick()">Cancel</button>
+        <button class="btn btn-primary btn-info col-xs-12" (click)="onSaveClick()">Save</button>
+    </div>
+</form>
+
+<table *ngIf="users.length > 0" class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <th scope="row">{{ user.id }}</th>
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phone }}</td>
+        <td><a href="javascript:void(0)" (click)="onDeleteUserClick(user.id)">
+            <i class="fa fa-trash"></i>Delete User
+        </a></td>
+      </tr>
+    </tbody>
+  </table>

@@ -40,6 +40,7 @@ export abstract class HttpService {
     return new HttpHeaders({})
       .append('Content-Type', 'application/json')
       .append('Authorization', this.token)
+      .append('Access-Control-Allow-Origin', '*')
       .append('Accept', 'application/json');
   }
 
@@ -50,6 +51,7 @@ export abstract class HttpService {
   protected getNoTokenCommonHttpHeaders(): HttpHeaders {
     return new HttpHeaders({})
       .append('Content-Type', 'application/json')
+      .append('Access-Control-Allow-Origin', '*')
       .append('Accept', 'application/json');
   }
 

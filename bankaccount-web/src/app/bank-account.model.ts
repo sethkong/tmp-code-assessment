@@ -1,17 +1,8 @@
-export interface Account extends BaseEntity {
+export interface Account {
     accountNumber: string;
     routingNumber: string;
     balance: number;
     userId: string;
-}
-
-export class AccountRequest {
-    userId: string = '';
-    amount: number = 0;
-    accountId: string = '';
-}
-
-export interface BaseEntity {
     id: string;
     insertedAt: Date; 
     updatedAt: Date;
@@ -20,7 +11,13 @@ export interface BaseEntity {
     updatedBy: string;
 }
 
-export interface User extends BaseEntity {
+export class AccountRequest {
+    userId: string = '';
+    amount: number = 0;
+    accountId: string = '';
+}
+
+export interface User {
     username: string;
     firstName: string;
     lastName: string;
@@ -31,6 +28,12 @@ export interface User extends BaseEntity {
     isEmailVerified: boolean;
     email: string;
     phone: string;
+    id: string;
+    insertedAt: Date; 
+    updatedAt: Date;
+    isActive: boolean;
+    insertedBy: string;
+    updatedBy: string;
 }
 
 export class UserRequest {
@@ -39,6 +42,7 @@ export class UserRequest {
     password: string = '';
     email: string = '';
     phone: string = '';
+    username: string = '';
 }
 
 export interface ApiMessage {
