@@ -11,30 +11,16 @@ namespace BankAccount.Api.Repositories
     public class AccountRepository : IAccountRepository
     {
         /// <summary>
-        /// The bank account collection.
-        /// </summary>
-        private IList<Account> _accounts;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AccountRepository"/>
-        /// </summary>
-        public AccountRepository()
-        {
-            _accounts = new List<Account>();
-        }
-
-
-        /// <summary>
         /// Fetches a bank account by its ID.
         /// </summary>
         /// <param name="accountId">The account Id.</param>
         /// <returns>The instance of the <see cref="BankAccount"/>.</returns>
         public Account FetchById(string accountId)
         {
-            if (!_accounts.Any(x => x.Id == accountId))
+            if (!DbContext.Accounts.Any(x => x.Id == accountId))
                 throw new ArgumentException("Bank account does not exist. Account Id: {0}", accountId);
 
-            return _accounts.FirstOrDefault(x => x.Id == accountId);
+            return DbContext.Accounts.FirstOrDefault(x => x.Id == accountId);
         }
 
         /// <summary>
@@ -43,7 +29,7 @@ namespace BankAccount.Api.Repositories
         /// <returns>The collection of the bank accounts.</returns>
         public IList<Account> Fetch()
         {
-            return _accounts;
+            return DbContext.Accounts;
         }
 
         /// <summary>
@@ -64,7 +50,7 @@ namespace BankAccount.Api.Repositories
                 AccountNumber = generateRoutingOrAccountNumber(isRouting: false),
                 RoutingNumber = generateRoutingOrAccountNumber(isRouting: true)
             };
-            _accounts.Add(account);
+            DbContext.Accounts.Add(account);
 
             return account;
         }
@@ -76,10 +62,10 @@ namespace BankAccount.Api.Repositories
         /// <returns>The value indicates wheteher an account was deleted successfully.</returns>
         public bool Delete(string accountId)
         {
-            if (_accounts.Any(x => x.Id != accountId))
-                return false; 
+            if (!DbContext.Accounts.Any(x => x.Id == accountId))
+                return false;
 
-            _accounts = _accounts.Where(x => x.Id != accountId).ToList();
+            DbContext.Accounts = DbContext.Accounts.Where(x => x.Id != accountId).ToList();
 
             return true;
         }
@@ -96,10 +82,10 @@ namespace BankAccount.Api.Repositories
             if (amount < 1.00)
                 throw new ArgumentException("The withdraw amount must be greater than 0. Amount: {0}", amount.ToString());
 
-            if (!_accounts.Any(x => x.UserId == userId && x.Id == accountId))
+            if (!DbContext.Accounts.Any(x => x.UserId == userId && x.Id == accountId))
                 throw new ArgumentException("User {0} does not have any account.", userId);
 
-            var account = _accounts.FirstOrDefault(x => x.UserId == userId && x.Id == accountId); 
+            var account = DbContext.Accounts.FirstOrDefault(x => x.UserId == userId && x.Id == accountId); 
 
             if (account != null)
             {
@@ -130,10 +116,10 @@ namespace BankAccount.Api.Repositories
             if (amount > 10000)
                 throw new ArgumentException("Cannot deposit more than 10,000 USD. Transaction rejected.");
 
-            if (!_accounts.Any(x => x.UserId == userId && x.Id == accountId))
+            if (!DbContext.Accounts.Any(x => x.UserId == userId && x.Id == accountId))
                 throw new ArgumentException("User {0} does not have any account.", userId);
 
-            var account = _accounts.FirstOrDefault(x => x.UserId == userId && x.Id == accountId);
+            var account = DbContext.Accounts.FirstOrDefault(x => x.UserId == userId && x.Id == accountId);
 
             if (account != null)
                 account.Balance += amount;
@@ -151,8 +137,8 @@ namespace BankAccount.Api.Repositories
             var random = new Random();
             var minValue = isRouting ? 10000000 : 1000000000;
             var number = random.Next(minValue).ToString();
-            while ((isRouting && _accounts.Any(x => x.RoutingNumber == number))
-                || (!isRouting && _accounts.Any(x => x.AccountNumber == number)))
+            while ((isRouting && DbContext.Accounts.Any(x => x.RoutingNumber == number))
+                || (!isRouting && DbContext.Accounts.Any(x => x.AccountNumber == number)))
             {
                 number = random.Next(minValue).ToString();
             }

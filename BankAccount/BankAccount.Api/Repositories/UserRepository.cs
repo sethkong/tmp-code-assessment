@@ -13,20 +13,16 @@ namespace BankAccount.Api.Repositories
     public class UserRepository : IUserRepository
     {
         /// <summary>
-        /// The user collection.
-        /// </summary>
-        private IList<User> _users = new List<User>();
-
-        /// <summary>
         /// Creates a user.
         /// </summary>
         /// <param name="user">The instance of the <see cref="User"/></param>
         /// <returns>The newly created user.</returns>
         public User Create(User user)
         {
-            if (_users.Any(x => x.Email.Equals(user.Email, StringComparison.CurrentCulture) ||
+            if (DbContext.Users.Any(x => x.Email.Equals(user.Email, StringComparison.CurrentCulture) ||
                 x.Phone.Equals(user.Phone, StringComparison.CurrentCulture)))
-                throw new ArgumentException("User already exists.");
+                return DbContext.Users.FirstOrDefault(x => x.Email == user.Email ||
+                    x.Phone == user.Phone);
 
             user.PasswordHash = HashUserPassword(user.Password);
             user.Password = string.Empty;
@@ -35,9 +31,14 @@ namespace BankAccount.Api.Repositories
             user.IsPhoneVerified = true;
             user.Username = user.Email;
 
-            _users.Add(user);
+            DbContext.Users.Add(user);
 
-            return _users.FirstOrDefault(x => x.Email.Equals(user.Email, StringComparison.CurrentCulture));
+            var newUser = DbContext.Users.FirstOrDefault(x => x.Email.Equals(user.Email, StringComparison.CurrentCulture));
+
+            if (newUser != null)
+                newUser.PasswordHash = string.Empty;
+
+            return newUser;
         }
 
         /// <summary>
@@ -47,9 +48,9 @@ namespace BankAccount.Api.Repositories
         /// <returns>The value which indicates whether the delete operation was successful or not.</returns>
         public bool Delete(string userId)
         {
-            if (!_users.Any(x => x.Id == userId))
+            if (!DbContext.Users.Any(x => x.Id == userId))
                 return false;
-            _users = _users.Where(x => x.Id != userId).ToList();
+            DbContext.Users = DbContext.Users.Where(x => x.Id != userId).ToList();
             return true;
         }
 
@@ -59,10 +60,10 @@ namespace BankAccount.Api.Repositories
         /// <returns>The collection of the users.</returns>
         public IList<User> Fetch()
         {
-            foreach (var user in _users)
+            foreach (var user in DbContext.Users)
                 user.PasswordHash = string.Empty;
 
-            return _users;
+            return DbContext.Users;
         }
 
         /// <summary>
@@ -72,10 +73,10 @@ namespace BankAccount.Api.Repositories
         /// <returns>The instance of the <see cref="User"/>.</returns>
         public User FetchById(string userId)
         {
-            if (!_users.Any(x => x.Id == userId))
+            if (!DbContext.Users.Any(x => x.Id == userId))
                 throw new Exception("User does not exist.");
 
-            var user = _users.FirstOrDefault(x => x.Id == userId);
+            var user = DbContext.Users.FirstOrDefault(x => x.Id == userId);
             if (user != null)
             {
                 user.PasswordHash = string.Empty;
